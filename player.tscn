@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cqktanqaphr1s"]
+
+[ext_resource type="PackedScene" uid="uid://cf0w0skqs3k64" path="res://Scenes/player.tscn" id="1_4flbx"]
+
+[node name="Player" unique_id=2006312659 instance=ExtResource("1_4flbx")]
+
+[node name="AnimationPlayer" parent="gobot" index="1"]
+autoplay = &"Idle"

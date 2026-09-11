@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Goal.gd" id="1_goal"]
+[ext_resource type="PackedScene" uid="uid://dwnh38aqtlvqt" path="res://platformer/Goal Flag.glb" id="2_flag"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_goal"]
+size = Vector3(2, 3, 2)
+
+[node name="Goal" type="Area3D"]
+script = ExtResource("1_goal")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_goal")
+
+[node name="Model" parent="." instance=ExtResource("2_flag")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

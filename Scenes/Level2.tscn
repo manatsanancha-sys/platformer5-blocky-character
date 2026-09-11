@@ -1,0 +1,330 @@
+[gd_scene load_steps=36 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_level"]
+[ext_resource type="PackedScene" uid="uid://cf0w0skqs3k64" path="res://Scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://cjweb15av433b" path="res://platformer2/a2.glb" id="3_a2"]
+[ext_resource type="PackedScene" uid="uid://bk5n0tn4k1l0c" path="res://Scenes/Coin.tscn" id="5_coin"]
+[ext_resource type="Script" path="res://Scripts/DeadZone.gd" id="6_deadzone"]
+[ext_resource type="Script" path="res://Scripts/GameUI.gd" id="7_gameui"]
+[ext_resource type="Texture2D" uid="uid://cnbbny7qjh2xn" path="res://Assets/Textures/coin.png" id="8_cointex"]
+[ext_resource type="PackedScene" path="res://Scenes/Goal.tscn" id="9_goal"]
+[ext_resource type="PackedScene" path="res://Scenes/Trap.tscn" id="10_trap"]
+[ext_resource type="PackedScene" path="res://Scenes/Gate.tscn" id="10b_gate"]
+[ext_resource type="PackedScene" uid="uid://b45kkuwpixpp2" path="res://platformer/Rock.glb" id="11_rock"]
+[ext_resource type="PackedScene" uid="uid://c0skolmbugxur" path="res://platformer/Small Plant.glb" id="12_plant"]
+[ext_resource type="PackedScene" uid="uid://ccsj0xg4w64nm" path="res://platformer/Small Bridge.glb" id="13_bridge"]
+[ext_resource type="PackedScene" uid="uid://cuwbb65va5aph" path="res://platformer/Fruit.glb" id="14_fruit"]
+[ext_resource type="PackedScene" uid="uid://d4g2r4yw3q616" path="res://platformer/Cube Exclamation.glb" id="15_exclaim"]
+[ext_resource type="PackedScene" uid="uid://bwsva33empwa2" path="res://platformer/Spring.glb" id="16_spring"]
+[ext_resource type="PackedScene" uid="uid://dejta3rtgggfd" path="res://platformer/Saw Blade.glb" id="17_saw"]
+[ext_resource type="PackedScene" uid="uid://dgaw71go02ul0" path="res://platformer/Spiky Ball.glb" id="18_spiky"]
+[ext_resource type="PackedScene" uid="uid://3foa53otl26q" path="res://platformer/Hazard Spike Trap.glb" id="19_spiketrap"]
+[ext_resource type="PackedScene" uid="uid://c7y0l5pu4iv0y" path="res://platformer/Arrow Sign.glb" id="20_arrow"]
+[ext_resource type="PackedScene" uid="uid://dwmduy4ee6ups" path="res://platformer/Fence.glb" id="21_fence"]
+[ext_resource type="PackedScene" uid="uid://bobc85ws8svwd" path="res://platformer/Tower.glb" id="22_tower"]
+[ext_resource type="PackedScene" uid="uid://cqbsusj2jtccx" path="res://platformer/Spikes.glb" id="23_spikes"]
+[ext_resource type="PackedScene" uid="uid://ccqr5g5v6osmm" path="res://platformer/Cloud.glb" id="24_cloud"]
+[ext_resource type="Texture2D" uid="uid://chfse4nlk1lus" path="res://bg/286965a2-4cac-46a0-8d4f-e63e609096a1.png" id="25_bg"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lvl2"]
+panorama = ExtResource("25_bg")
+
+[sub_resource type="Sky" id="Sky_lvl2"]
+sky_material = SubResource("PanoramaSkyMaterial_lvl2")
+
+[sub_resource type="Environment" id="Environment_lvl2"]
+background_mode = 2
+sky = SubResource("Sky_lvl2")
+ambient_light_source = 3
+ambient_light_energy = 1.15
+tonemap_mode = 2
+tonemap_exposure = 0.9
+ssao_enabled = true
+glow_enabled = true
+glow_intensity = 1.4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_deadzone2"]
+size = Vector3(128, 17, 112)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bridge2"]
+size = Vector3(1.4, 0.3, 3.0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rock2"]
+size = Vector3(1.7, 1.2, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_exclaim"]
+size = Vector3(2.1, 2.1, 2.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tower2"]
+size = Vector3(9.5, 14.6, 9.0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fence2"]
+size = Vector3(2.0, 1.3, 0.35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a2"]
+size = Vector3(2.4, 0.32, 2.4)
+
+[node name="Level2" type="Node3D"]
+script = ExtResource("1_level")
+required_items = 6
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="StartIsland" parent="Platforms" instance=ExtResource("3_a2")]
+transform = Transform3D(2.6402, 0, 0, 0, 2.6402, 0, 0, 0, 2.6402, 0, 3.1539, 0)
+
+[node name="Collision" type="StaticBody3D" parent="Platforms/StartIsland"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/StartIsland/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
+shape = SubResource("BoxShape3D_a2")
+
+[node name="MidIsland" parent="Platforms" instance=ExtResource("3_a2")]
+transform = Transform3D(2.5876, 0, 0, 0, 2.5876, 0, 0, 0, 2.5876, 0.5, 3.1708, -8.66)
+
+[node name="Collision" type="StaticBody3D" parent="Platforms/MidIsland"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/MidIsland/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
+shape = SubResource("BoxShape3D_a2")
+
+[node name="HazardIsland1" parent="Platforms" instance=ExtResource("3_a2")]
+transform = Transform3D(2.1118, 0, 0, 0, 2.1118, 0, 0, 0, 2.1118, -0.5, 3.3232, -17.09)
+
+[node name="Collision" type="StaticBody3D" parent="Platforms/HazardIsland1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/HazardIsland1/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
+shape = SubResource("BoxShape3D_a2")
+
+[node name="HazardIsland2" parent="Platforms" instance=ExtResource("3_a2")]
+transform = Transform3D(2.0701, 0, 0, 0, 2.0701, 0, 0, 0, 2.0701, 0.5, 3.3366, -24.7)
+
+[node name="Collision" type="StaticBody3D" parent="Platforms/HazardIsland2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/HazardIsland2/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
+shape = SubResource("BoxShape3D_a2")
+
+[node name="Step1" parent="Platforms" instance=ExtResource("3_a2")]
+transform = Transform3D(0.924, 0, 0, 0, 0.924, 0, 0, 0, 0.924, 0, 4.2039, -30.59)
+
+[node name="Collision" type="StaticBody3D" parent="Platforms/Step1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Step1/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
+shape = SubResource("BoxShape3D_a2")
+
+[node name="Step2" parent="Platforms" instance=ExtResource("3_a2")]
+transform = Transform3D(0.924, 0, 0, 0, 0.924, 0, 0, 0, 0.924, 0, 4.7039, -35.1)
+
+[node name="Collision" type="StaticBody3D" parent="Platforms/Step2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Step2/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
+shape = SubResource("BoxShape3D_a2")
+
+[node name="GoalIsland" parent="Platforms" instance=ExtResource("3_a2")]
+transform = Transform3D(2.8455, 0, 0, 0, 2.8455, 0, 0, 0, 2.8455, 0, 4.5881, -41.82)
+
+[node name="Collision" type="StaticBody3D" parent="Platforms/GoalIsland"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/GoalIsland/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
+shape = SubResource("BoxShape3D_a2")
+
+[node name="BridgeCollision" type="StaticBody3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 3.85, -4.36)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/BridgeCollision"]
+shape = SubResource("BoxShape3D_bridge2")
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_lvl2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.898603, 0.438763, 2.98254e-08, 0.146657, 0.300359, 0.942484, 0.413527, 0.846919, -0.334251, 9.04457, 6.63937, -20.9)
+shadow_enabled = true
+
+[node name="Extras" type="Node3D" parent="."]
+
+[node name="SpawnPosition" type="Marker3D" parent="Extras"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="Coins" type="Node3D" parent="."]
+
+[node name="Coin1" parent="Coins" instance=ExtResource("5_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9, -12.5)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("5_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 4.9, -13.8)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("5_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 4.9, -20.3)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("5_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 4.9, -21.5)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("5_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 4.6, -28)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("5_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 4.8, -28.9)
+
+[node name="Decorations" type="Node3D" parent="."]
+
+[node name="StartRock" parent="Decorations" instance=ExtResource("11_rock")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 1.5)
+
+[node name="Collision" type="StaticBody3D" parent="Decorations/StartRock"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/StartRock/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0)
+shape = SubResource("BoxShape3D_rock2")
+
+[node name="StartPlant" parent="Decorations" instance=ExtResource("12_plant")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 4, 1)
+
+[node name="ArrowSign" parent="Decorations" instance=ExtResource("20_arrow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 2.3)
+
+[node name="StartFence" parent="Decorations" instance=ExtResource("21_fence")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 4, -2)
+
+[node name="Collision" type="StaticBody3D" parent="Decorations/StartFence"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/StartFence/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63, 0)
+shape = SubResource("BoxShape3D_fence2")
+
+[node name="BridgeModel" parent="Decorations" instance=ExtResource("13_bridge")]
+transform = Transform3D(0, 0, -0.5, 0, 0.5, 0, 0.5, 0, 0, 0.25, 4, -4.36)
+
+[node name="Fruit" parent="Decorations" instance=ExtResource("14_fruit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -9.66)
+
+[node name="CubeExclamation" parent="Decorations" instance=ExtResource("15_exclaim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 4, -8.16)
+
+[node name="Collision" type="StaticBody3D" parent="Decorations/CubeExclamation"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/CubeExclamation/Collision"]
+shape = SubResource("BoxShape3D_exclaim")
+
+[node name="MidPlant" parent="Decorations" instance=ExtResource("12_plant")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4, -6.86)
+
+[node name="MidRock" parent="Decorations" instance=ExtResource("11_rock")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -10.16)
+
+[node name="Collision" type="StaticBody3D" parent="Decorations/MidRock"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/MidRock/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0)
+shape = SubResource("BoxShape3D_rock2")
+
+[node name="Tower" parent="Decorations" instance=ExtResource("22_tower")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 5.5, -42.55)
+
+[node name="Collision" type="StaticBody3D" parent="Decorations/Tower"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/Tower/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 7.2, -0.3)
+shape = SubResource("BoxShape3D_tower2")
+
+[node name="GoalFence" parent="Decorations" instance=ExtResource("21_fence")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 5.5, -39.82)
+
+[node name="Collision" type="StaticBody3D" parent="Decorations/GoalFence"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/GoalFence/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63, 0)
+shape = SubResource("BoxShape3D_fence2")
+
+[node name="GoalSpikes" parent="Decorations" instance=ExtResource("23_spikes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 5.5, -39.82)
+
+[node name="GoalSpring" parent="Decorations" instance=ExtResource("16_spring")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, -38.5)
+
+[node name="CloudA" parent="Decorations" instance=ExtResource("24_cloud")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -6, 10, -6)
+
+[node name="CloudB" parent="Decorations" instance=ExtResource("24_cloud")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 7, 11, -22)
+
+[node name="CloudC" parent="Decorations" instance=ExtResource("24_cloud")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7, 9, -35)
+
+[node name="Hazards" type="Node3D" parent="."]
+
+[node name="SawBladeModel" parent="Hazards" instance=ExtResource("17_saw")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -2.2, 4, -16.09)
+
+[node name="SawBladeTrap" parent="Hazards" instance=ExtResource("10_trap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 4, -16.09)
+
+[node name="SpikyBallModel" parent="Hazards" instance=ExtResource("18_spiky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 4, -17.59)
+
+[node name="SpikyBallTrap" parent="Hazards" instance=ExtResource("10_trap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 4, -17.59)
+
+[node name="HazardSpikeTrapModel" parent="Hazards" instance=ExtResource("19_spiketrap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4, -23.9)
+
+[node name="HazardSpikeTrapZone" parent="Hazards" instance=ExtResource("10_trap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4, -23.9)
+
+[node name="Goal" parent="." instance=ExtResource("9_goal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, -40)
+next_scene_path = "res://Scenes/Level1.tscn"
+
+[node name="GoalGate" parent="." instance=ExtResource("10b_gate")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, -39.5)
+
+[node name="DeadZone" type="Area3D" parent="."]
+script = ExtResource("6_deadzone")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeadZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, -20.9)
+shape = SubResource("BoxShape3D_deadzone2")
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+
+[node name="GameUI" type="Control" parent="UserInterface"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_gameui")
+
+[node name="CoinTexture" type="TextureRect" parent="UserInterface/GameUI"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 31.0
+offset_right = 122.0
+offset_bottom = 121.0
+texture = ExtResource("8_cointex")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="CoinsLabel" type="Label" parent="UserInterface/GameUI"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 50.0
+offset_right = 193.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.996094, 0.710938, 0.261719, 1)
+theme_override_colors/font_outline_color = Color(0.644531, 0.410156, 0.1875, 1)
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/font_size = 32
+text = "0 / 6"
+
+[connection signal="body_entered" from="DeadZone" to="DeadZone" method="_on_body_entered"]

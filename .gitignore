@@ -1,0 +1,22 @@
+# Godot 4+ specific ignores
+.godot/
+
+# Godot-specific ignores
+.import/
+export.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# Unrelated coursework files left in this folder (not part of this game)
+3D-Platformer-Kit.zip
+G20_S04_WS-AS_RF_T1_PN_01 (2).mp4
+Ultimate Platformer Pack-glb.zip
+Workshop09_Video_Pose_Tracking_MediaPipe.ipynb
+Workshop09_Video_Pose_Tracking_MediaPipe_ANSWERED (1).ipynb
+Workshop09_Video_Pose_Tracking_MediaPipe_ANSWERED.ipynb
