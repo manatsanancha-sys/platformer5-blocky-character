@@ -42,6 +42,17 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 2
 
 # ---------- FUNCTIONS ---------- #
 
+func _ready():
+	# The player.tscn scene-file override that swaps the AnimationPlayer's
+	# library onto CharacterV3AnimLib.tres does not survive the .tscn -> .pck
+	# export conversion (confirmed via headless load of the exported pck: the
+	# library falls back to the FBX's own raw "mixamo_com" clip there), so the
+	# library is assigned here in code instead, which works identically in
+	# every build.
+	if animation.has_animation_library(""):
+		animation.remove_animation_library("")
+	animation.add_animation_library("", load("res://character_v3/CharacterV3AnimLib.tres"))
+
 func _process(delta):
 	player_animations()
 	get_input(delta)
