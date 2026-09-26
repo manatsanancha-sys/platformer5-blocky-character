@@ -26,12 +26,13 @@ var can_double_jump = false
 @onready var animation: AnimationPlayer = model.find_child("AnimationPlayer", true, false)
 @onready var spring_arm = %Gimbal
 
-# Ninja by Quaternius animation clip names (source glTF uses "CharacterArmature|<Name>";
-# Godot's importer may keep or strip that prefix, so play_anim() tries both).
+# character_v3 (custom Blender character, Mixamo-rigged) animation clip
+# names, as keyed in res://character_v3/CharacterV3AnimLib.tres (built from
+# "Action Idle To Standing Idle.fbx" / Walking.fbx / Jumping.fbx).
 const ANIM_IDLE := "Idle"
-const ANIM_RUN := "Run"
+const ANIM_RUN := "Walk"
 const ANIM_JUMP := "Jump"
-const ANIM_FLIP := "Jump_Idle"
+const ANIM_FLIP := "Jump" # no separate double-jump/flip clip available
 
 @onready var particle_trail = $ParticleTrail
 @onready var footsteps = $Footsteps
@@ -119,10 +120,6 @@ func player_animations():
 		else:
 			play_anim(ANIM_IDLE, 0.5)
 
-# Plays a named clip, falling back to the "CharacterArmature|<Name>" form
-# the Ninja model's source glTF uses, in case the importer kept that prefix.
 func play_anim(anim_name: String, custom_blend := -1.0, custom_speed := 1.0):
 	if animation.has_animation(anim_name):
 		animation.play(anim_name, custom_blend, custom_speed)
-	elif animation.has_animation("CharacterArmature|" + anim_name):
-		animation.play("CharacterArmature|" + anim_name, custom_blend, custom_speed)

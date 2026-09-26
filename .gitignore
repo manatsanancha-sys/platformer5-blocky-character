@@ -20,3 +20,12 @@ Ultimate Platformer Pack-glb.zip
 Workshop09_Video_Pose_Tracking_MediaPipe.ipynb
 Workshop09_Video_Pose_Tracking_MediaPipe_ANSWERED (1).ipynb
 Workshop09_Video_Pose_Tracking_MediaPipe_ANSWERED.ipynb
+
+# Abandoned character experiments, superseded by character_v3/ and no
+# longer referenced by any scene (kept on disk for reference, not submitted)
+Mixamo/
+character/Giant.fbx
+character/Giant.fbx.import
+character/Giant_0.png
+character/Giant_0.png.import
+character/GiantBoneMap.tres

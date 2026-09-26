@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cf0w0skqs3k64"]
+[gd_scene load_steps=10 format=3 uid="uid://cf0w0skqs3k64"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_t0xh4"]
 [ext_resource type="Script" path="res://Scripts/CameraMovement.gd" id="5_pxu3x"]
 [ext_resource type="ArrayMesh" uid="uid://deu06eho4c74" path="res://Assets/Resources/cloud.res" id="6_nkgvq"]
 [ext_resource type="AudioStream" uid="uid://ncq6fpsrcmjh" path="res://Assets/Audio/SFX/walking.ogg" id="7_asqdb"]
-[ext_resource type="PackedScene" uid="uid://dlpdcc60rpw8l" path="res://character/Ninja by Quaternius - xGYmeDpfTu.glb" id="8_ninja"]
+[ext_resource type="PackedScene" uid="uid://dowudyatpf3ql" path="res://character_v3/Action Idle To Standing Idle.fbx" id="8_charv3"]
+[ext_resource type="AnimationLibrary" path="res://character_v3/CharacterV3AnimLib.tres" id="9_charv3lib"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oo8ef"]
 radius = 0.407547
@@ -27,8 +28,13 @@ jump_force = 6.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000624448, 0.675578, -0.00332153)
 shape = SubResource("CapsuleShape3D_oo8ef")
 
-[node name="gobot" parent="." instance=ExtResource("8_ninja")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
+[node name="gobot" parent="." instance=ExtResource("8_charv3")]
+transform = Transform3D(-0.754043, 0, 0, 0, 0.754043, 0, 0, 0, -0.754043, 0, -0.016828, 0)
+
+[node name="AnimationPlayer" parent="gobot" index="1"]
+libraries = {
+"": ExtResource("9_charv3lib")
+}
 
 [node name="Gimbal" type="Node3D" parent="."]
 unique_name_in_owner = true
